@@ -12,10 +12,7 @@ import streamlit as st  # Add this import
 
 # Load environment variables from .env file
 load_dotenv()
-try:
-   os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-except (AttributeError, KeyError):
-   os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 
 
