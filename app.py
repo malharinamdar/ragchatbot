@@ -27,6 +27,11 @@ def setup_chatbot():
         return None
 
 def main():
+    # Add to the top of your `main()` function
+    # Clear Streamlit's static file cache
+    if os.path.exists(".streamlit"):
+        shutil.rmtree(".streamlit")
+    ...
     initialize_session_state()
     
     st.title("JioPay Customer Support Assistant")
@@ -93,7 +98,10 @@ def main():
             st.session_state.messages.append(assistant_message)
 
 if __name__ == "__main__":
+    import os
     port = int(os.environ.get("PORT", 8501))
+    # Explicitly set server configurations
+    os.environ["STREAMLIT_SERVER_PORT"] = str(port)
+    os.environ["STREAMLIT_SERVER_ADDRESS"] = "0.0.0.0"
     main()
-    # Use this line instead of `streamlit run app.py`:
-    os.system(f"streamlit run app.py --server.port {port}")
+    os.system(f"streamlit run app.py --server.port {port} --server.address 0.0.0.0")
