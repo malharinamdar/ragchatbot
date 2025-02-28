@@ -93,4 +93,7 @@ def main():
             st.session_state.messages.append(assistant_message)
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8501))
     main()
+    # Use this line instead of `streamlit run app.py`:
+    os.system(f"streamlit run app.py --server.port {port}")
